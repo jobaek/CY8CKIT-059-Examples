@@ -1,0 +1,6 @@
+D:\Work\PSoC_Projects\CY8CKIT-059\LED_Exam.cydsn\LED_Exam.cyprj|8bf5fb51-2355-41e4-8579-fe931fff0854
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|74883117-c09f-4dab-b497-e62305e3d6fd
+C:\Users\jobaek\OneDrive\문서\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|ca7fca1f-1a07-41b2-be97-2f29ecec28cc
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|876cffe3-1320-4509-bd63-ef46a4dbad59
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|270c28f7-7d71-4646-9328-8bc490ada679
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|75d79196-f0a2-4551-b3fe-c093785763a6
