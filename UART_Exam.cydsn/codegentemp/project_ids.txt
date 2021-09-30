@@ -1,0 +1,9 @@
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|7f86bbe5-8334-4e08-964b-4d51f8209e43
+C:\Users\jobaek\OneDrive\문서\PSoC Creator\4.4\Downloads ( 4.4).cylib\Downloads ( 4.4).cyprj|818139e0-7e23-487b-b38f-30a4eee9932c
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|5338b01d-cf59-4843-a48e-2db3d1a0361d
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|a209767e-442a-4434-9f46-5e3233675d48
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|9829063a-f9c1-4f83-ae0a-e223dfc23cf8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.4\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|1c5212f6-9279-4406-8640-8bae3473c7ce
+D:\Work\PSoC_Projects\CY8CKIT-059\UART_Exam.cydsn\UART_Exam.cyprj|28418b3d-7ae4-4948-832a-571abfdbfa09
+D:\Work\PSoC_Projects\CY8CKIT-059\GPIO_Exam.cydsn\GPIO_Exam.cyprj|1b52bd0d-60e5-46bb-9540-f8953c405b71
+C:\Users\jobaek\OneDrive\문서\PSoC Creator\My Templates\UART_Bootloader.cydsn\UART_Bootloader.cyprj|172ba154-9ff2-4b52-9343-d4a775cc6d2b
