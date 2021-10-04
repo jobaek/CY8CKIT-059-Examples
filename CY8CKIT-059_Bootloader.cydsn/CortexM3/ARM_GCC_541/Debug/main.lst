@@ -1,0 +1,518 @@
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 6
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.main,"ax",%progbits
+  20              		.align	2
+  21              		.global	main
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	main, %function
+  25              	main:
+  26              	.LFB63:
+  27              		.file 1 "main.c"
+   1:main.c        **** /*  --------------------------------------------------------------------------
+   2:main.c        **** * Copyright 2016, Cypress Semiconductor Corporation.
+   3:main.c        **** *
+   4:main.c        **** * This software is owned by Cypress Semiconductor Corporation (Cypress)
+   5:main.c        **** * and is protected by and subject to worldwide patent protection (United
+   6:main.c        **** * States and foreign), United States copyright laws and international
+   7:main.c        **** * treaty provisions. Cypress hereby grants to licensee a personal,
+   8:main.c        **** * non-exclusive, non-transferable license to copy, use, modify, create
+   9:main.c        **** * derivative works of, and compile the Cypress Source Code and derivative
+  10:main.c        **** * works for the sole purpose of creating custom software in support of
+  11:main.c        **** * licensee product to be used only in conjunction with a Cypress integrated
+  12:main.c        **** * circuit as specified in the applicable agreement. Any reproduction,
+  13:main.c        **** * modification, translation, compilation, or representation of this
+  14:main.c        **** * software except as specified above is prohibited without the express
+  15:main.c        **** * written permission of Cypress.
+  16:main.c        **** * 
+  17:main.c        **** * Disclaimer: CYPRESS MAKES NO WARRANTY OF ANY KIND,EXPRESS OR IMPLIED,
+  18:main.c        **** * WITH REGARD TO THIS MATERIAL, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  19:main.c        **** * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+  20:main.c        **** * Cypress reserves the right to make changes without further notice to the
+  21:main.c        **** * materials described herein. Cypress does not assume any liability arising
+  22:main.c        **** * out of the application or use of any product or circuit described herein.
+  23:main.c        **** * Cypress does not authorize its products for use as critical components in
+  24:main.c        **** * life-support systems where a malfunction or failure may reasonably be
+  25:main.c        **** * expected to result in significant injury to the user. The inclusion of
+  26:main.c        **** * Cypress' product in a life-support systems application implies that the
+  27:main.c        **** * manufacturer assumes all risk of such use and in doing so indemnifies
+  28:main.c        **** * Cypress against all charges.
+  29:main.c        **** * 
+  30:main.c        **** * Use may be limited by and subject to the applicable Cypress software
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 2
+
+
+  31:main.c        **** * license agreement.
+  32:main.c        **** * -----------------------------------------------------------------------------
+  33:main.c        **** * Copyright (c) Cypress Semiconductors 2000-2016. All Rights Reserved.
+  34:main.c        **** *
+  35:main.c        **** *****************************************************************************
+  36:main.c        **** *  Project Name: UART_Bootloader
+  37:main.c        **** *  Project Revision: 1.00
+  38:main.c        **** *  Software Version: PSoC Creator 3.3 SP2
+  39:main.c        **** *  Device Tested: CY8C3866AXI-040
+  40:main.c        **** *  Compilers Tested: Keil
+  41:main.c        **** *  Related Hardware: CY8CKIT-030
+  42:main.c        **** *****************************************************************************
+  43:main.c        **** ***************************************************************************** */
+  44:main.c        **** 
+  45:main.c        **** /*
+  46:main.c        **** * Project Description:
+  47:main.c        **** * This is a sample bootloader program demonstrating PSoC 5LP bootloading PSoC 3.
+  48:main.c        **** * The project is tested using two DVKs - One with PSoC 3 on CY8CKIT-030 and the second one
+  49:main.c        **** * with PSoC 5LP on CY8CKIT-050. PSoC 3 must be programmed with this Program.
+  50:main.c        **** *
+  51:main.c        **** * Connections Required
+  52:main.c        **** * CY8CKIT-050 (PSoC 5LP DVK) :
+  53:main.c        **** *  P0[0] - Rx -  connected to Tx of PSoC3
+  54:main.c        **** *  P0[1] - Tx -  connected to Rx of PSoC3 
+  55:main.c        **** *  P6.1 is internally connected to SW1 on DVK.
+  56:main.c        **** *
+  57:main.c        **** * CY8CKIT-030 (PSoC 3 DVK) : PSoC  3 intially programmed with UART_Bootloader program.
+  58:main.c        **** *  P0[0] - Rx - Connected to Tx of PSoC 5LP
+  59:main.c        **** *  P0[1] - Tx - Connected to Rx of PSoC 5LP
+  60:main.c        **** *  P6.1 is internally connected to SW1 on DVK.
+  61:main.c        **** *
+  62:main.c        **** * Note that the GNDs of both DVKs should be connected together.
+  63:main.c        **** *
+  64:main.c        **** * The main()function of this program calls the CyBtldr_Start() API. This API performs the entire bo
+  65:main.c        **** * It communicates with the host. After a successful bootload operation, this API passes control to 
+  66:main.c        **** * via a software reset.
+  67:main.c        **** *
+  68:main.c        **** * There are two bootloadable projects: Bootloadable1 (displays “Hello” on char LCD) and Bootloa
+  69:main.c        **** * With successive bootload operation, alternate bootloadables will be programmed onto the target. 
+  70:main.c        **** *
+  71:main.c        **** * The following events happen on each trigger of the switch P6 [1] of CY8CKIT – 050 (PSoC 5LP):
+  72:main.c        **** *
+  73:main.c        **** * On first switch press, Bootloadable1.cyacd file will be bootloaded onto the target PSoC 3. 
+  74:main.c        **** * On successful bootloading the message “Bootloaded - Hello” will be displayed on CY8CKIT – 0
+  75:main.c        **** * and the message “Hello” will be displayed on CY8CKIT – 030 LCD.
+  76:main.c        **** *
+  77:main.c        **** * For subsequent bootloading operation press the switch P6 [1] on CY8CKIT – 030. This makes PSoC 
+  78:main.c        **** * and be ready to bootload a new application.
+  79:main.c        **** *
+  80:main.c        **** * On next switch press on CY8CKIT – 050, Bootloadable2.cyacd file will be bootloaded onto the tar
+  81:main.c        **** * On successful bootloading the message “Bootloaded - Bye” will be displayed on CY8CKIT – 050
+  82:main.c        **** * will be displayed on CY8CKIT – 030 LCD.
+  83:main.c        **** ***************************************************************************** */
+  84:main.c        **** 
+  85:main.c        **** #include <device.h>
+  86:main.c        **** 
+  87:main.c        **** int main()
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 3
+
+
+  88:main.c        **** {
+  28              		.loc 1 88 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 1, uses_anonymous_args = 0
+  32 0000 80B5     		push	{r7, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 7, -8
+  35              		.cfi_offset 14, -4
+  36 0002 00AF     		add	r7, sp, #0
+  37              		.cfi_def_cfa_register 7
+  89:main.c        **** 
+  90:main.c        **** 	/* Initialize PWM */
+  91:main.c        ****     PWM_Start();   
+  38              		.loc 1 91 0
+  39 0004 FFF7FEFF 		bl	PWM_Start
+  92:main.c        **** 	
+  93:main.c        **** 	/* This API does the entire bootload operation. After a succesful bootload operation, this API tra
+  94:main.c        **** 	   program control to the new application via a software reset */
+  95:main.c        **** 	Bootloader_Start();
+  40              		.loc 1 95 0
+  41 0008 FFF7FEFF 		bl	Bootloader_Start
+  42              	.L2:
+  96:main.c        **** 	
+  97:main.c        **** 	/* CyBtldr_Start() API does not return – it ends with a software device reset. So, the code 
+  98:main.c        **** 	   after this API call (below) is never executed. */
+  99:main.c        ****     for(;;)
+ 100:main.c        ****     {
+ 101:main.c        ****         
+ 102:main.c        ****     }
+  43              		.loc 1 102 0 discriminator 1
+  44 000c FEE7     		b	.L2
+  45              		.cfi_endproc
+  46              	.LFE63:
+  47              		.size	main, .-main
+  48 000e 00BF     		.text
+  49              	.Letext0:
+  50              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+  51              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.4\\psoc creator\\import\\gnu\\arm\\5.4.
+  52              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+  53              		.section	.debug_info,"",%progbits
+  54              	.Ldebug_info0:
+  55 0000 C7000000 		.4byte	0xc7
+  56 0004 0400     		.2byte	0x4
+  57 0006 00000000 		.4byte	.Ldebug_abbrev0
+  58 000a 04       		.byte	0x4
+  59 000b 01       		.uleb128 0x1
+  60 000c A2000000 		.4byte	.LASF16
+  61 0010 0C       		.byte	0xc
+  62 0011 6D000000 		.4byte	.LASF17
+  63 0015 2E000000 		.4byte	.LASF18
+  64 0019 00000000 		.4byte	.Ldebug_ranges0+0
+  65 001d 00000000 		.4byte	0
+  66 0021 00000000 		.4byte	.Ldebug_line0
+  67 0025 02       		.uleb128 0x2
+  68 0026 01       		.byte	0x1
+  69 0027 06       		.byte	0x6
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 4
+
+
+  70 0028 60010000 		.4byte	.LASF0
+  71 002c 02       		.uleb128 0x2
+  72 002d 01       		.byte	0x1
+  73 002e 08       		.byte	0x8
+  74 002f 30010000 		.4byte	.LASF1
+  75 0033 02       		.uleb128 0x2
+  76 0034 02       		.byte	0x2
+  77 0035 05       		.byte	0x5
+  78 0036 88010000 		.4byte	.LASF2
+  79 003a 02       		.uleb128 0x2
+  80 003b 02       		.byte	0x2
+  81 003c 07       		.byte	0x7
+  82 003d 0E000000 		.4byte	.LASF3
+  83 0041 03       		.uleb128 0x3
+  84 0042 78010000 		.4byte	.LASF9
+  85 0046 02       		.byte	0x2
+  86 0047 3F       		.byte	0x3f
+  87 0048 4C000000 		.4byte	0x4c
+  88 004c 02       		.uleb128 0x2
+  89 004d 04       		.byte	0x4
+  90 004e 05       		.byte	0x5
+  91 004f 43010000 		.4byte	.LASF4
+  92 0053 02       		.uleb128 0x2
+  93 0054 04       		.byte	0x4
+  94 0055 07       		.byte	0x7
+  95 0056 79000000 		.4byte	.LASF5
+  96 005a 02       		.uleb128 0x2
+  97 005b 08       		.byte	0x8
+  98 005c 05       		.byte	0x5
+  99 005d 00000000 		.4byte	.LASF6
+ 100 0061 02       		.uleb128 0x2
+ 101 0062 08       		.byte	0x8
+ 102 0063 07       		.byte	0x7
+ 103 0064 8B000000 		.4byte	.LASF7
+ 104 0068 04       		.uleb128 0x4
+ 105 0069 04       		.byte	0x4
+ 106 006a 05       		.byte	0x5
+ 107 006b 696E7400 		.ascii	"int\000"
+ 108 006f 02       		.uleb128 0x2
+ 109 0070 04       		.byte	0x4
+ 110 0071 07       		.byte	0x7
+ 111 0072 21000000 		.4byte	.LASF8
+ 112 0076 03       		.uleb128 0x3
+ 113 0077 92010000 		.4byte	.LASF10
+ 114 007b 03       		.byte	0x3
+ 115 007c 2C       		.byte	0x2c
+ 116 007d 41000000 		.4byte	0x41
+ 117 0081 02       		.uleb128 0x2
+ 118 0082 04       		.byte	0x4
+ 119 0083 04       		.byte	0x4
+ 120 0084 82010000 		.4byte	.LASF11
+ 121 0088 02       		.uleb128 0x2
+ 122 0089 08       		.byte	0x8
+ 123 008a 04       		.byte	0x4
+ 124 008b 4C010000 		.4byte	.LASF12
+ 125 008f 02       		.uleb128 0x2
+ 126 0090 01       		.byte	0x1
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 5
+
+
+ 127 0091 08       		.byte	0x8
+ 128 0092 3E010000 		.4byte	.LASF13
+ 129 0096 02       		.uleb128 0x2
+ 130 0097 08       		.byte	0x8
+ 131 0098 04       		.byte	0x4
+ 132 0099 6C010000 		.4byte	.LASF14
+ 133 009d 02       		.uleb128 0x2
+ 134 009e 04       		.byte	0x4
+ 135 009f 07       		.byte	0x7
+ 136 00a0 9A010000 		.4byte	.LASF15
+ 137 00a4 05       		.uleb128 0x5
+ 138 00a5 74000000 		.4byte	.LASF19
+ 139 00a9 01       		.byte	0x1
+ 140 00aa 57       		.byte	0x57
+ 141 00ab 68000000 		.4byte	0x68
+ 142 00af 00000000 		.4byte	.LFB63
+ 143 00b3 0E000000 		.4byte	.LFE63-.LFB63
+ 144 00b7 01       		.uleb128 0x1
+ 145 00b8 9C       		.byte	0x9c
+ 146 00b9 06       		.uleb128 0x6
+ 147 00ba 53010000 		.4byte	.LASF20
+ 148 00be 04       		.byte	0x4
+ 149 00bf 1207     		.2byte	0x712
+ 150 00c1 C5000000 		.4byte	0xc5
+ 151 00c5 07       		.uleb128 0x7
+ 152 00c6 76000000 		.4byte	0x76
+ 153 00ca 00       		.byte	0
+ 154              		.section	.debug_abbrev,"",%progbits
+ 155              	.Ldebug_abbrev0:
+ 156 0000 01       		.uleb128 0x1
+ 157 0001 11       		.uleb128 0x11
+ 158 0002 01       		.byte	0x1
+ 159 0003 25       		.uleb128 0x25
+ 160 0004 0E       		.uleb128 0xe
+ 161 0005 13       		.uleb128 0x13
+ 162 0006 0B       		.uleb128 0xb
+ 163 0007 03       		.uleb128 0x3
+ 164 0008 0E       		.uleb128 0xe
+ 165 0009 1B       		.uleb128 0x1b
+ 166 000a 0E       		.uleb128 0xe
+ 167 000b 55       		.uleb128 0x55
+ 168 000c 17       		.uleb128 0x17
+ 169 000d 11       		.uleb128 0x11
+ 170 000e 01       		.uleb128 0x1
+ 171 000f 10       		.uleb128 0x10
+ 172 0010 17       		.uleb128 0x17
+ 173 0011 00       		.byte	0
+ 174 0012 00       		.byte	0
+ 175 0013 02       		.uleb128 0x2
+ 176 0014 24       		.uleb128 0x24
+ 177 0015 00       		.byte	0
+ 178 0016 0B       		.uleb128 0xb
+ 179 0017 0B       		.uleb128 0xb
+ 180 0018 3E       		.uleb128 0x3e
+ 181 0019 0B       		.uleb128 0xb
+ 182 001a 03       		.uleb128 0x3
+ 183 001b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 6
+
+
+ 184 001c 00       		.byte	0
+ 185 001d 00       		.byte	0
+ 186 001e 03       		.uleb128 0x3
+ 187 001f 16       		.uleb128 0x16
+ 188 0020 00       		.byte	0
+ 189 0021 03       		.uleb128 0x3
+ 190 0022 0E       		.uleb128 0xe
+ 191 0023 3A       		.uleb128 0x3a
+ 192 0024 0B       		.uleb128 0xb
+ 193 0025 3B       		.uleb128 0x3b
+ 194 0026 0B       		.uleb128 0xb
+ 195 0027 49       		.uleb128 0x49
+ 196 0028 13       		.uleb128 0x13
+ 197 0029 00       		.byte	0
+ 198 002a 00       		.byte	0
+ 199 002b 04       		.uleb128 0x4
+ 200 002c 24       		.uleb128 0x24
+ 201 002d 00       		.byte	0
+ 202 002e 0B       		.uleb128 0xb
+ 203 002f 0B       		.uleb128 0xb
+ 204 0030 3E       		.uleb128 0x3e
+ 205 0031 0B       		.uleb128 0xb
+ 206 0032 03       		.uleb128 0x3
+ 207 0033 08       		.uleb128 0x8
+ 208 0034 00       		.byte	0
+ 209 0035 00       		.byte	0
+ 210 0036 05       		.uleb128 0x5
+ 211 0037 2E       		.uleb128 0x2e
+ 212 0038 00       		.byte	0
+ 213 0039 3F       		.uleb128 0x3f
+ 214 003a 19       		.uleb128 0x19
+ 215 003b 03       		.uleb128 0x3
+ 216 003c 0E       		.uleb128 0xe
+ 217 003d 3A       		.uleb128 0x3a
+ 218 003e 0B       		.uleb128 0xb
+ 219 003f 3B       		.uleb128 0x3b
+ 220 0040 0B       		.uleb128 0xb
+ 221 0041 49       		.uleb128 0x49
+ 222 0042 13       		.uleb128 0x13
+ 223 0043 11       		.uleb128 0x11
+ 224 0044 01       		.uleb128 0x1
+ 225 0045 12       		.uleb128 0x12
+ 226 0046 06       		.uleb128 0x6
+ 227 0047 40       		.uleb128 0x40
+ 228 0048 18       		.uleb128 0x18
+ 229 0049 9642     		.uleb128 0x2116
+ 230 004b 19       		.uleb128 0x19
+ 231 004c 00       		.byte	0
+ 232 004d 00       		.byte	0
+ 233 004e 06       		.uleb128 0x6
+ 234 004f 34       		.uleb128 0x34
+ 235 0050 00       		.byte	0
+ 236 0051 03       		.uleb128 0x3
+ 237 0052 0E       		.uleb128 0xe
+ 238 0053 3A       		.uleb128 0x3a
+ 239 0054 0B       		.uleb128 0xb
+ 240 0055 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 7
+
+
+ 241 0056 05       		.uleb128 0x5
+ 242 0057 49       		.uleb128 0x49
+ 243 0058 13       		.uleb128 0x13
+ 244 0059 3F       		.uleb128 0x3f
+ 245 005a 19       		.uleb128 0x19
+ 246 005b 3C       		.uleb128 0x3c
+ 247 005c 19       		.uleb128 0x19
+ 248 005d 00       		.byte	0
+ 249 005e 00       		.byte	0
+ 250 005f 07       		.uleb128 0x7
+ 251 0060 35       		.uleb128 0x35
+ 252 0061 00       		.byte	0
+ 253 0062 49       		.uleb128 0x49
+ 254 0063 13       		.uleb128 0x13
+ 255 0064 00       		.byte	0
+ 256 0065 00       		.byte	0
+ 257 0066 00       		.byte	0
+ 258              		.section	.debug_aranges,"",%progbits
+ 259 0000 1C000000 		.4byte	0x1c
+ 260 0004 0200     		.2byte	0x2
+ 261 0006 00000000 		.4byte	.Ldebug_info0
+ 262 000a 04       		.byte	0x4
+ 263 000b 00       		.byte	0
+ 264 000c 0000     		.2byte	0
+ 265 000e 0000     		.2byte	0
+ 266 0010 00000000 		.4byte	.LFB63
+ 267 0014 0E000000 		.4byte	.LFE63-.LFB63
+ 268 0018 00000000 		.4byte	0
+ 269 001c 00000000 		.4byte	0
+ 270              		.section	.debug_ranges,"",%progbits
+ 271              	.Ldebug_ranges0:
+ 272 0000 00000000 		.4byte	.LFB63
+ 273 0004 0E000000 		.4byte	.LFE63
+ 274 0008 00000000 		.4byte	0
+ 275 000c 00000000 		.4byte	0
+ 276              		.section	.debug_line,"",%progbits
+ 277              	.Ldebug_line0:
+ 278 0000 5C010000 		.section	.debug_str,"MS",%progbits,1
+ 278      02003F01 
+ 278      00000201 
+ 278      FB0E0D00 
+ 278      01010101 
+ 279              	.LASF6:
+ 280 0000 6C6F6E67 		.ascii	"long long int\000"
+ 280      206C6F6E 
+ 280      6720696E 
+ 280      7400
+ 281              	.LASF3:
+ 282 000e 73686F72 		.ascii	"short unsigned int\000"
+ 282      7420756E 
+ 282      7369676E 
+ 282      65642069 
+ 282      6E7400
+ 283              	.LASF8:
+ 284 0021 756E7369 		.ascii	"unsigned int\000"
+ 284      676E6564 
+ 284      20696E74 
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 8
+
+
+ 284      00
+ 285              	.LASF18:
+ 286 002e 443A5C57 		.ascii	"D:\\Work\\PSoC_Projects\\CY8CKIT-059\\CY8CKIT-059_B"
+ 286      6F726B5C 
+ 286      50536F43 
+ 286      5F50726F 
+ 286      6A656374 
+ 287 005d 6F6F746C 		.ascii	"ootloader.cydsn\000"
+ 287      6F616465 
+ 287      722E6379 
+ 287      64736E00 
+ 288              	.LASF17:
+ 289 006d 6D61696E 		.ascii	"main.c\000"
+ 289      2E6300
+ 290              	.LASF19:
+ 291 0074 6D61696E 		.ascii	"main\000"
+ 291      00
+ 292              	.LASF5:
+ 293 0079 6C6F6E67 		.ascii	"long unsigned int\000"
+ 293      20756E73 
+ 293      69676E65 
+ 293      6420696E 
+ 293      7400
+ 294              	.LASF7:
+ 295 008b 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 295      206C6F6E 
+ 295      6720756E 
+ 295      7369676E 
+ 295      65642069 
+ 296              	.LASF16:
+ 297 00a2 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 297      43313120 
+ 297      352E342E 
+ 297      31203230 
+ 297      31363036 
+ 298 00d5 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 298      20726576 
+ 298      6973696F 
+ 298      6E203233 
+ 298      37373135 
+ 299 0108 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 299      66756E63 
+ 299      74696F6E 
+ 299      2D736563 
+ 299      74696F6E 
+ 300              	.LASF1:
+ 301 0130 756E7369 		.ascii	"unsigned char\000"
+ 301      676E6564 
+ 301      20636861 
+ 301      7200
+ 302              	.LASF13:
+ 303 013e 63686172 		.ascii	"char\000"
+ 303      00
+ 304              	.LASF4:
+ 305 0143 6C6F6E67 		.ascii	"long int\000"
+ 305      20696E74 
+ 305      00
+ARM GAS  C:\Users\jobaek\AppData\Local\Temp\cc5C4tyn.s 			page 9
+
+
+ 306              	.LASF12:
+ 307 014c 646F7562 		.ascii	"double\000"
+ 307      6C6500
+ 308              	.LASF20:
+ 309 0153 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 309      52784275 
+ 309      66666572 
+ 309      00
+ 310              	.LASF0:
+ 311 0160 7369676E 		.ascii	"signed char\000"
+ 311      65642063 
+ 311      68617200 
+ 312              	.LASF14:
+ 313 016c 6C6F6E67 		.ascii	"long double\000"
+ 313      20646F75 
+ 313      626C6500 
+ 314              	.LASF9:
+ 315 0178 5F5F696E 		.ascii	"__int32_t\000"
+ 315      7433325F 
+ 315      7400
+ 316              	.LASF11:
+ 317 0182 666C6F61 		.ascii	"float\000"
+ 317      7400
+ 318              	.LASF2:
+ 319 0188 73686F72 		.ascii	"short int\000"
+ 319      7420696E 
+ 319      7400
+ 320              	.LASF10:
+ 321 0192 696E7433 		.ascii	"int32_t\000"
+ 321      325F7400 
+ 322              	.LASF15:
+ 323 019a 73697A65 		.ascii	"sizetype\000"
+ 323      74797065 
+ 323      00
+ 324              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
